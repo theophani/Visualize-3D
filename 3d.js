@@ -6,7 +6,6 @@
 * http://24ways.org/2010/intro-to-css-3d-transforms
 * http://9elements.com/html5demos/matrix3d/
 * http://www.eleqtriq.com/2010/05/css-3d-matrix-transformations/
-* ps: thx fronx :)
 */
 (function(){
   
@@ -42,6 +41,7 @@
 
   elem = doc.createElement('style');
   elem.innerHTML = s;
+  elem.title = 'theophani3D';
   doc.body.appendChild(elem);
   
   theaH  = '<span>Use left and right arrows to rotate</span>';
@@ -52,8 +52,14 @@
   thea.innerHTML = theaH;
   doc.body.appendChild(thea);
   
-  rule = doc.styleSheets[doc.styleSheets.length-1].cssRules[2].style;
-
+  rule = (function(){
+    var l, i = doc.styleSheets.length-1;
+    while (doc.styleSheets[i].title != 'theophani3D' && i > -1) { i--; }
+    r = doc.styleSheets[i].cssRules.length;
+    doc.styleSheets[i].insertRule('body * {}',r);
+    return doc.styleSheets[i].cssRules[r].style;
+  }());
+  
   doc.addEventListener("keydown", function (e){
     if(e.keyCode === 37 || e.keyCode === 39) {
       if(e.keyCode === 37  && r > -90) { r = r-1; }
