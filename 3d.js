@@ -12,7 +12,7 @@
 
   var doc = document;
   var d, c, elem, thea, rule;
-  var r = 40; // rotation, in radians
+  var r = 40; // rotation, in degrees
     
   d = 0; // depth
   c = function(e,h) { // calc max DOM depth
